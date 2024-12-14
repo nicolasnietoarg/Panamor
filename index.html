@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panamor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #ffc107;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .section h2 {
+            text-align: center;
+            background-color: #ffc107;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            margin: 0;
+        }
+        .section-content {
+            display: none;
+            padding: 10px;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .product img:hover {
+            transform: scale(1.05);
+        }
+        .product-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+        .product-info h4 {
+            margin: 0 0 10px;
+        }
+        .product-info p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .product-info .price {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000;
+        }
+        .product-action {
+            display: flex;
+            align-items: center;
+        }
+        .product-action select {
+            margin-right: 10px;
+        }
+        #carrito {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #carrito ul {
+            list-style: none;
+            padding: 0;
+        }
+        #carrito ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        #carrito ul li button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #carrito ul li button:hover {
+            background-color: #c82333;
+        }
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .product img {
+                margin-bottom: 10px;
+            }
+            .product-info {
+                margin-left: 0;
+            }
+            .product-action {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .product-action select {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panamor</h1>
+    </header>
+    <div class="container">
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Nuestros Panes</h2>
+            <div class="section-content" style="display: block;">
+                <div class="product">
+                    <div class="product-info">
+                        <p style="text-align: center; font-weight: bold;">
+                            Hacemos un producto artesanal SIN CONSERVANTES NI ADITIVOS, con un proceso de elaboración moderno.
+                            Con la masa madre como nuestro sostén de trabajo, fermentamos nuestros productos y los
+                            dejamos reposar durante un mínimo de 15 horas a baja temperatura, asegurando un proceso gradual y
+                            respetuoso del producto para llegar al pan de calidad que buscamos y ofrecemos hoy.<br><br>
+                            La fermentación en frío con masa madre nos asegura un pan interesante en sabor, aroma y textura,
+                            conserva el pan de forma natural, mejora su valor nutritivo y facilita la digestión.<br><br>
+                            La variedad de nuestra producción la desarrollamos a partir de la combinación de cereales, semillas,
+                            harinas y todos los ingredientes de primera calidad, seleccionados con ese mismo objetivo.
+                        </p>
+                        
+                    </div>
+                </div>
+                <!-- Productos de Hogazas -->
+            </div>
+        </div>
+        <!-- Sección Pan de Molde -->
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Pan de Molde</h2>
+            <div class="section-content">
+                <div class="product">
+                    <img src="Pan Molde Clasico.jpg" alt="Clasico" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Clasico</h4>
+                        <p> Harina de Trigo 000. 800 gr.</p>
+                        <div class="price" data-price="5400">$5400</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Clasico', 5400, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Rustico.jpg" alt="Rustico" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Rustico</h4>
+                        <p>Con harina integral de trigo, centeno y trigo entero activado. 800 gr.</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Rustico', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Semillas.jpg" alt="Semillas" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Semillas</h4>
+                        <p>Con semillas activadas de girasol, lino y sésamo. 800 gr.</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Rustico', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Muesli.jpg" alt="Muesli" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Muesli</h4>
+                        <p>Con harina integral de trigo, centeno, trigo entero activado, avena, pasas de uva, miel y nuez. 800 gr.</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Muesli', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Integral Centeno.jpg" alt="Integral Centeno" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Integral Centeno</h4>
+                        <p>Con harina 100% integral de centeno. 800 gr.</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Centeno', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Trigo Organico.jpg" alt="Trigo Orgánico" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Trigo Orgánico</h4>
+                        <p>Con harina 100% orgánica certificada. Vienen 2 unidades de 500 gr c/u</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Trigo Orgánico', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Multicereal.jpg" alt="Multicereal" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Multicereal</h4>
+                        <p>Con semillas de sesámo, semillas de lino, azúcar negra y aceite de oliva. Vienen 2 unidades de 500 gr c/u</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Multicereal', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Brioche.jpg" alt="Brioche" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Brioche</h4>
+                        <p>Con huevo, leche y manteca. Vienen 2 unidades de 500 gr c/u</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Brioche', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Lactal.jpg" alt="Pan Lactal" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Lactal</h4>
+                        <p>Con harina 000 y leche. Vienen 2 unidades de 500 gr c/u</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Lactal', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="Pan Molde Ruso.jpg" alt="Pan Ruso" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Ruso</h4>
+                        <p>Con harina de trigo, harina integral de centeno, malta tostada, cilando y melaza. Vienen 2 unidades de 500 gr c/u</p>
+                        <div class="price" data-price="5600">$5600</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Pan de Molde Ruso', 5600, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <!-- Más productos para Pan de Molde -->
+            </div>
+        </div>
+        <!-- Sección Hogazas -->
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Hogazas</h2>
+            <div class="section-content">
+                <div class="product">
+                    <img src="pan_molde_clasico.jpg" alt="Clasico" onclick="mostrarImagen(this.src)">
+                    <div class="product-info">
+                        <h4>Clasico</h4>
+                        <p>Peso aprox 800 gr. Harina de Trigo 000.</p>
+                        <div class="price" data-price="5400">$5400</div>
+                    </div>
+                    <div class="product-action">
+                        <select>
+                            <option value="1">1 Unid.</option>
+                            <option value="2">2 Unid.</option>
+                            <option value="3">3 Unid.</option>
+                            <option value="4">4 Unid.</option>
+                            <option value="5">5 Unid.</option>
+                        </select>
+                        <button onclick="agregarAlCarrito('Hogaza Clasico', 5400, this.previousElementSibling.value)">Agregar al pedido</button>
+                    </div>
+                </div>
+                <!-- Productos de Hogazas -->
+            </div>
+        </div>
+
+        <!-- Carrito -->
+        <div id="carrito">
+            <h3>Carrito de Compras</h3>
+            <p>Productos: <span id="contador-productos">0</span></p>
+            <ul id="lista-carrito"></ul>
+            <p>Total: $<span id="total-carrito">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        let totalCarrito = 0;
+        let cantidadTotalProductos = 0;
+    
+        function mostrarImagen(src) {
+            const ventanaImagen = window.open('', '_blank');
+            ventanaImagen.document.write(`<img src="${src}" style="width:100%; height:auto;">`);
+        }
+    
+        function agregarAlCarrito(nombre, precio, cantidad) {
+            cantidad = parseInt(cantidad);
+            const totalProducto = precio * cantidad;
+    
+            const listaCarrito = document.getElementById('lista-carrito');
+            const totalElemento = document.getElementById('total-carrito');
+            const contadorProductos = document.getElementById('contador-productos');
+    
+            const item = document.createElement('li');
+            const nombreCantidad = document.createElement('span');
+            nombreCantidad.textContent = `${nombre} x${cantidad} - $${totalProducto}`;
+    
+            const botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar producto';
+            botonEliminar.onclick = function() {
+                totalCarrito -= totalProducto;
+                cantidadTotalProductos -= cantidad;
+                totalElemento.textContent = totalCarrito;
+                contadorProductos.textContent = cantidadTotalProductos;
+                listaCarrito.removeChild(item);
+            };
+    
+            item.appendChild(nombreCantidad);
+            item.appendChild(botonEliminar);
+            listaCarrito.appendChild(item);
+    
+            totalCarrito += totalProducto;
+            cantidadTotalProductos += cantidad;
+            totalElemento.textContent = totalCarrito;
+            contadorProductos.textContent = cantidadTotalProductos;
+    
+            // Mostrar popup de confirmación
+            mostrarPopup(`${nombre} x${cantidad} agregado al carrito.`);
+        }
+    
+        function mostrarPopup(mensaje) {
+            const popup = document.createElement('div');
+            popup.textContent = mensaje;
+            popup.style.position = 'fixed';
+            popup.style.top = '10px';
+            popup.style.right = '10px';
+            popup.style.backgroundColor = '#28a745';
+            popup.style.color = 'white';
+            popup.style.padding = '10px 20px';
+            popup.style.borderRadius = '5px';
+            popup.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            popup.style.zIndex = '1000';
+    
+            document.body.appendChild(popup);
+    
+            setTimeout(() => {
+                document.body.removeChild(popup);
+            }, 3000);
+        }
+    
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>    
+</body>
+</html>
